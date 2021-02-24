@@ -12,6 +12,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.marvel.characters.databinding.ActivityMainBinding
 import com.marvel.characters.datasource.CharacterApi
 import com.marvel.characters.datasource.CharacterPagingSource
 import com.marvel.characters.list.adapter.CharacterAdapter
@@ -25,16 +26,17 @@ class MainActivity : AppCompatActivity() {
         ViewModelProvider(this).get(CharactersViewModel::class.java)
     }
 
-    private var list: RecyclerView? = null
+    private lateinit var binding: ActivityMainBinding
 
     private val pagedAdapter = CharacterAdapter()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        list = findViewById<RecyclerView>(R.id.list)
-        list?.adapter = pagedAdapter
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+        binding.list.adapter = pagedAdapter
         val source = CharacterApi()
         val paged = Pager(PagingConfig(PAGE_LIMIT)){
             CharacterPagingSource(source)

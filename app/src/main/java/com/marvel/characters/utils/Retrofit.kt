@@ -1,8 +1,10 @@
 package com.marvel.characters.utils
 
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.gson.GsonBuilder
 import com.marvel.characters.service.BASE_URL
-import okhttp3.OkHttpClient
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -17,6 +19,7 @@ val defaultOkHttpClient: OkHttpClient
             .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.MILLISECONDS)
             .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.MILLISECONDS)
             .readTimeout(DEFAULT_TIMEOUT, TimeUnit.MILLISECONDS)
+            .addInterceptor(apiKeyInterceptor)
         return builder
             .build()
     }
@@ -33,3 +36,21 @@ val defaultRetrofit: Retrofit
             )
             .build()
     }
+
+/**
+ * Supply every request with api key query parameters
+ */
+private val apiKeyInterceptor = object : Interceptor {
+    override fun intercept(chain: Interceptor.Chain): Response {
+        var request: Request = chain.request()
+        val publicKey = Firebase.remoteConfig.getString("public_key")
+        val now = System.currentTimeMillis()
+        val hash = now.generateHash()
+        val url: HttpUrl = request.url.newBuilder()
+            .addQueryParameter("apikey", publicKey)
+            .addQueryParameter("hash",hash)
+            .addQueryParameter("ts",now.toString()).build()
+        request = request.newBuilder().url(url).build()
+        return chain.proceed(request)
+    }
+}

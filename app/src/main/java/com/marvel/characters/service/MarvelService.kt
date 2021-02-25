@@ -15,9 +15,6 @@ interface MarvelService {
 
     @GET("characters")
     suspend fun getCharacters(
-        @Query("apikey") api: String,
-        @Query("hash") hash: String,
-        @Query("ts") timeStamp: Long,
         @Query("limit") limit: Int,
         @Query("offset") offset: Int
     ): Response<CharacterResult>

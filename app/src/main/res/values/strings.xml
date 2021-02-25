@@ -2,4 +2,6 @@
     <string name="app_name">Marvel Characters</string>
     <string name="text_attribution">Data provided by Marvel. © 2021 Marvel</string>
     <string name="empty_state_description">Description not available</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

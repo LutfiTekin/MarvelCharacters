@@ -12,6 +12,9 @@ class LandingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing)
+        fetchRemoteConfigAndRedirect()
+    }
+    private fun fetchRemoteConfigAndRedirect() {
         val configSettings = remoteConfigSettings {
             minimumFetchIntervalInSeconds = 3600
         }
@@ -19,13 +22,9 @@ class LandingActivity : AppCompatActivity() {
             setConfigSettingsAsync(configSettings)
             setDefaultsAsync(R.xml.remote_config)
             fetchAndActivate().addOnCompleteListener {
-                redirect()
+                startActivity(Intent(this@LandingActivity, MainActivity::class.java))
             }
         }
     }
 
-
-    private fun redirect(){
-        startActivity(Intent(this, MainActivity::class.java))
-    }
 }

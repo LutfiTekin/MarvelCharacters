@@ -22,9 +22,7 @@ class CharacterViewHolder internal constructor(
 
     fun bind(data: Character?){
         val character = data ?: return
-        image.load(character.thumbnail.image.also {
-            Log.d("MRVL","thumbnail $it")
-        })
+        image.load(character.thumbnail.image)
         name.text = character.name
     }
 

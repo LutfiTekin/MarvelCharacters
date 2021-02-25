@@ -1,11 +1,13 @@
-package com.marvel.characters
+package com.marvel.characters.utils
 
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import java.math.BigInteger
 import java.security.MessageDigest
 
-
+/**
+ * Generate a hash from given timestamp
+ */
 fun Long.generateHash(): String{
     val publicKey = Firebase.remoteConfig.getString("public_key")
     val privateKey = Firebase.remoteConfig.getString("private_key")

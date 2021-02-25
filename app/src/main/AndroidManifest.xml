@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.MarvelCharacters">
-        <activity android:name=".ui.LandingActivity">
+        <activity android:name=".ui.activity.LandingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

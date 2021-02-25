@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.marvel.characters.CharactersViewModel
+import com.marvel.characters.ui.viewmodel.CharactersViewModel
 import com.marvel.characters.databinding.ActivityMainBinding
 import com.marvel.characters.list.adapter.CharacterAdapter
 import com.marvel.characters.list.adapter.SelectionListener

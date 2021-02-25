@@ -1,9 +1,8 @@
 package com.marvel.characters.datasource
 
-import android.util.Log
 import com.marvel.characters.model.character.Character
-import com.marvel.characters.service.MarvelService
-import com.marvel.characters.service.PAGE_LIMIT
+import com.marvel.characters.network.MarvelService
+import com.marvel.characters.network.PAGE_LIMIT
 import com.marvel.characters.utils.defaultRetrofit
 
 class CharacterApi() {

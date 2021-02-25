@@ -3,9 +3,8 @@ package com.marvel.characters.utils
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.gson.GsonBuilder
-import com.marvel.characters.service.BASE_URL
+import com.marvel.characters.network.BASE_URL
 import okhttp3.*
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit

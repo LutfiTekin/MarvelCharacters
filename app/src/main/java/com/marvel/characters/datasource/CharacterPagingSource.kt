@@ -4,7 +4,7 @@ package com.marvel.characters.datasource
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.marvel.characters.model.character.Character
-import com.marvel.characters.service.PAGE_LIMIT
+import com.marvel.characters.network.PAGE_LIMIT
 
 class CharacterPagingSource(private val source: CharacterApi): PagingSource<Int,Character>() {
 

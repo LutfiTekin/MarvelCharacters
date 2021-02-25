@@ -1,4 +1,4 @@
-package com.marvel.characters.service
+package com.marvel.characters.network
 
 import com.marvel.characters.model.CharacterResult
 import com.marvel.characters.model.character.Character

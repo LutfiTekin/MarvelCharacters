@@ -1,4 +1,4 @@
-package com.marvel.characters
+package com.marvel.characters.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,7 +9,7 @@ import androidx.paging.cachedIn
 import com.marvel.characters.datasource.CharacterApi
 import com.marvel.characters.datasource.CharacterPagingSource
 import com.marvel.characters.model.character.Character
-import com.marvel.characters.service.PAGE_LIMIT
+import com.marvel.characters.network.PAGE_LIMIT
 import kotlinx.coroutines.flow.Flow
 
 class CharactersViewModel: ViewModel() {

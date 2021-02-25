@@ -1,5 +1,6 @@
 package com.marvel.characters.ui.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
@@ -23,5 +24,7 @@ class CharactersViewModel: ViewModel() {
             }.flow.cachedIn(viewModelScope)
         }
 
+
+    val selectedCharacter = MutableLiveData<Character?>(null)
 
 }

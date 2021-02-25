@@ -3,6 +3,7 @@ package com.marvel.characters.ui.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.marvel.characters.ui.viewmodel.CharactersViewModel
@@ -10,6 +11,7 @@ import com.marvel.characters.databinding.ActivityMainBinding
 import com.marvel.characters.list.adapter.CharacterAdapter
 import com.marvel.characters.list.adapter.SelectionListener
 import com.marvel.characters.model.character.Character
+import com.marvel.characters.ui.fragment.CharacterDetail
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -35,9 +37,14 @@ class MainActivity : AppCompatActivity(), SelectionListener {
                 characterAdapter.submitData(it)
             }
         }
+        charactersViewModel.selectedCharacter.observe(this, {  character ->
+            character?.let {
+                CharacterDetail().show(supportFragmentManager,"cd")
+            }
+        })
     }
 
     override fun onCharacterSelected(character: Character) {
-        Log.d("MRVL","Selected ${character.name}")
+        charactersViewModel.selectedCharacter.value = character
     }
 }

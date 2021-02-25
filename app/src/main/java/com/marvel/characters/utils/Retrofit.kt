@@ -3,8 +3,10 @@ package com.marvel.characters.utils
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.gson.GsonBuilder
+import com.marvel.characters.BuildConfig
 import com.marvel.characters.network.BASE_URL
 import okhttp3.*
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -19,6 +21,7 @@ val defaultOkHttpClient: OkHttpClient
             .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.MILLISECONDS)
             .readTimeout(DEFAULT_TIMEOUT, TimeUnit.MILLISECONDS)
             .addInterceptor(apiKeyInterceptor)
+            .addInterceptor(loggingInterceptor)
         return builder
             .build()
     }
@@ -34,6 +37,15 @@ val defaultRetrofit: Retrofit
                 )
             )
             .build()
+    }
+
+val loggingInterceptor: HttpLoggingInterceptor
+    get() {
+        return HttpLoggingInterceptor().apply {
+            if (BuildConfig.DEBUG) {
+                level = HttpLoggingInterceptor.Level.BASIC
+            }
+        }
     }
 
 /**

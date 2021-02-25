@@ -8,12 +8,19 @@ import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.marvel.characters.R
 
+/**
+ * This activity created for app initialization and splash screen purposes
+ */
 class LandingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing)
         fetchRemoteConfigAndRedirect()
     }
+
+    /**
+     * Fetch marvel public and private key from firebase remote config
+     */
     private fun fetchRemoteConfigAndRedirect() {
         val configSettings = remoteConfigSettings {
             minimumFetchIntervalInSeconds = 3600

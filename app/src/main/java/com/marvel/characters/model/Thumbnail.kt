@@ -1,4 +1,4 @@
-package com.marvel.characters.model.character
+package com.marvel.characters.model
 
 
 data class Thumbnail(

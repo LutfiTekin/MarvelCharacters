@@ -1,8 +1,10 @@
 package com.marvel.characters.model.character
 
+import com.marvel.characters.model.Thumbnail
+
 
 data class Character(
-    val comics: Comic,
+    val comics: CharacterComic,
     val description: String,
     val events: Event,
     val id: Int,

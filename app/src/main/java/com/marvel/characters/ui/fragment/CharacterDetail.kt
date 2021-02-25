@@ -4,18 +4,22 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.marvel.characters.R
 import com.marvel.characters.databinding.DialogCharacterDetailBinding
+import com.marvel.characters.list.adapter.ComicAdapter
 import com.marvel.characters.ui.viewmodel.CharactersViewModel
+import kotlinx.coroutines.launch
 
 
 class CharacterDetail: BottomSheetDialogFragment() {
@@ -62,6 +66,11 @@ class CharacterDetail: BottomSheetDialogFragment() {
         image.load(character.thumbnail.image)
         name.text = character.name
         description.text = character.description.ifBlank { getString(R.string.empty_state_description) }
+
+        lifecycleScope.launch {
+            val comicsList = charactersViewModel.getComics(character.id)
+            comicsRV.adapter = ComicAdapter(comicsList)
+        }
     }
 
 }

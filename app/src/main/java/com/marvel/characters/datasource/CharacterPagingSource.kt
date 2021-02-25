@@ -4,7 +4,7 @@ package com.marvel.characters.datasource
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.marvel.characters.model.character.Character
-import com.marvel.characters.network.PAGE_LIMIT
+import com.marvel.characters.network.CHARACTER_PAGE_LIMIT
 
 class CharacterPagingSource(private val source: CharacterApi): PagingSource<Int,Character>() {
 
@@ -12,7 +12,7 @@ class CharacterPagingSource(private val source: CharacterApi): PagingSource<Int,
         return try {
             val requestedPage = params.key ?: 0
             val data = source.getCharacters(requestedPage) ?: emptyList()
-            LoadResult.Page(data, if (requestedPage == 0) null else requestedPage - 1, if (data.size < PAGE_LIMIT) null else source.page + 1)
+            LoadResult.Page(data, if (requestedPage == 0) null else requestedPage - 1, if (data.size < CHARACTER_PAGE_LIMIT) null else source.page + 1)
         } catch (e: Exception) {
             LoadResult.Error(e)
         }
